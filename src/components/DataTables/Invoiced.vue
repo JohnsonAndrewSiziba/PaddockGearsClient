@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="compact  order-column all-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
+    <table class="compact  order-column invoiced-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
       <thead>
       <tr>
         <th>Date</th>
@@ -25,16 +25,19 @@
 import API_BASE from "@/scripts/variables/apiBase";
 
 export default {
-  name: "AllJobs",
+  name: "Invoiced",
+  created() {
+    this.renderTable();
+  },
   methods: {
-    renderTable(){
+    renderTable() {
       $(function () {
-        var table = $('.all-jobs').DataTable({
+        var table = $('.invoiced-jobs').DataTable({
           processing: true,
           serverSide: true,
           pageLength: 50,
           dom: 'Bfrtip',
-          ajax: API_BASE + "api/jobs_list",
+          ajax: API_BASE + "api/invoiced",
           columns: [
             {data: 'date', name: 'date'},
             {data: 'id', name: 'id'},
@@ -50,9 +53,6 @@ export default {
         });
       });
     }
-  },
-  created() {
-    this.renderTable();
   }
 }
 </script>

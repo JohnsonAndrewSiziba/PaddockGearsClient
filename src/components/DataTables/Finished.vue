@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="compact  order-column all-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
+    <table class="compact  order-column finished-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
       <thead>
       <tr>
         <th>Date</th>
@@ -25,16 +25,16 @@
 import API_BASE from "@/scripts/variables/apiBase";
 
 export default {
-  name: "AllJobs",
+  name: "Finished",
   methods: {
     renderTable(){
       $(function () {
-        var table = $('.all-jobs').DataTable({
+        var table = $('.finished-jobs').DataTable({
           processing: true,
           serverSide: true,
           pageLength: 50,
           dom: 'Bfrtip',
-          ajax: API_BASE + "api/jobs_list",
+          ajax: API_BASE + "api/finished",
           columns: [
             {data: 'date', name: 'date'},
             {data: 'id', name: 'id'},

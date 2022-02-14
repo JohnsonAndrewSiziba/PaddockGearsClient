@@ -167,7 +167,7 @@ export default {
             invoice_number: this.invoice_number,
             invoice_amount: this.invoice_amount,
             work_in_progress: this.work_in_progress,
-            delivery_note_number: this.delivery_note_number,
+            delivery_note_number: this.delivery_note_number
           })
             .then(response => {
               console.log("Job ", response.data);
@@ -180,7 +180,7 @@ export default {
               })
             }).then(
               () => {
-                this.$parent.renderTable();
+                this.$router.go();
               }
           )
             .catch(e => {

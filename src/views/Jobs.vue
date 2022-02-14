@@ -20,20 +20,24 @@
 
       <a-tabs default-active-key="1">
         <a-tab-pane key="1" tab="ALL JOBS">
-          All Jobs
+          <h5 class="my-2 text-center text-secondary">All Jobs</h5>
           <AllJobs />
         </a-tab-pane>
         <a-tab-pane key="2" tab="WORK IN PROGRESS">
-          Work In Progress
+          <h5 class="my-2 text-center text-secondary">Work in Progress</h5>
+          <WorkInProgress />
         </a-tab-pane>
         <a-tab-pane key="3" tab="FINISHED JOBS">
-          Finished Jobs
+          <h5 class="my-2 text-center text-secondary">Finished Jobs</h5>
+          <Finished />
         </a-tab-pane>
         <a-tab-pane key="4" tab="INVOICED JOBS">
-          Invoiced
+          <h5 class="my-2 text-center text-secondary">Invoiced Jobs</h5>
+          <Invoiced />
         </a-tab-pane>
         <a-tab-pane key="5" tab="COLLECTED JOBS">
-          Collectted Jobs
+          <h5 class="my-2 text-center text-secondary">Collected Jobs</h5>
+          <CollectedJobs />
         </a-tab-pane>
 
       </a-tabs>
@@ -48,9 +52,13 @@ import PageBanner from "@/components/Layouts/Banners/PageBanner";
 import banner from "@/assets/images/banners/jobs_banner.jpg"
 import AddJob from "@/components/Modals/AddJob";
 import AllJobs from "@/components/DataTables/AllJobs";
+import WorkInProgress from "@/components/DataTables/WorkInProgress";
+import Finished from "@/components/DataTables/Finished";
+import Invoiced from "@/components/DataTables/Invoiced";
+import CollectedJobs from "@/components/DataTables/CollectedJobs";
 export default {
   name: "Jobs",
-  components: {AllJobs, AddJob, PageBanner},
+  components: {CollectedJobs, Invoiced, Finished, WorkInProgress, AllJobs, AddJob, PageBanner},
   data(){
     return {
       banner: banner,

@@ -1,40 +1,41 @@
 <template>
-  <div>
-    <table class="compact  order-column all-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
-      <thead>
-      <tr>
-        <th>Date</th>
-        <th>Job #</th>
-        <th>Client</th>
-        <th>Descr.</th>
-        <th>QTY</th>
-        <th>Quote Amt.</th>
-        <th>Quote #</th>
-        <th>WIP</th>
-        <th>Dept. ID</th>
-        <th>Details</th>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
+  <table class="compact  order-column collected-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Job #</th>
+      <th>Client</th>
+      <th>Descr.</th>
+      <th>QTY</th>
+      <th>Quote Amt.</th>
+      <th>Quote #</th>
+      <th>WIP</th>
+      <th>Dept. ID</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 </template>
 
 <script>
 import API_BASE from "@/scripts/variables/apiBase";
 
 export default {
-  name: "AllJobs",
+  name: "CollectedJobs",
+  created() {
+    this.renderTable();
+  },
   methods: {
-    renderTable(){
+    renderTable() {
       $(function () {
-        var table = $('.all-jobs').DataTable({
+        var table = $('.collected-jobs').DataTable({
           processing: true,
           serverSide: true,
           pageLength: 50,
           dom: 'Bfrtip',
-          ajax: API_BASE + "api/jobs_list",
+          ajax: API_BASE + "api/collected",
           columns: [
             {data: 'date', name: 'date'},
             {data: 'id', name: 'id'},
@@ -50,9 +51,6 @@ export default {
         });
       });
     }
-  },
-  created() {
-    this.renderTable();
   }
 }
 </script>
