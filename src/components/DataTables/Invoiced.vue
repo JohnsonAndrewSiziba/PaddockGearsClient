@@ -1,5 +1,30 @@
 <template>
   <div>
+    <h4 class="text-secondary">Filter</h4>
+    <a-card :bordered="false" style="width: 45%" class="mb-4">
+      <div class="d-flex flex-row text-secondary mt-2">
+        <div>
+          <h5 class="text-secondary">From</h5>
+          <p>
+            <input v-model="from" type="date" name="from" id="from">
+          </p>
+        </div>
+        <span style="width: 100px"></span>
+        <div>
+          <h5 class="text-secondary">To</h5>
+          <p>
+            <input v-model="to" type="date" name="to" id="to">
+          </p>
+        </div>
+      </div>
+      <div>
+        <a-button type="primary" @click="filterJobs()">Filter </a-button>
+        <a-button v-if="filtered" style="margin-left: 20px" type="success" @click="viewAll()">View All </a-button>
+      </div>
+    </a-card>
+
+    <hr class="text-secondary mt-2" style="width: 20%" >
+
     <table class="compact  order-column invoiced-jobs" style="width: 100%; font-size: 11px; line-height: 12px; font-weight: lighter">
       <thead>
       <tr>
@@ -23,13 +48,38 @@
 
 <script>
 import API_BASE from "@/scripts/variables/apiBase";
+import {MY_HTTP} from "@/my_http/axiosInstance";
+import Swal from "sweetalert2";
 
 export default {
   name: "Invoiced",
+  data(){
+    return {
+      from: "",
+      to: "",
+      filtered: false
+    }
+  },
   created() {
     this.renderTable();
   },
   methods: {
+    filterJobs(){
+      MY_HTTP.post('/api/login', {
+        from: this.from,
+        to: this.to
+      })
+          .then(response => {
+            this.filtered = true;
+            Swal.fire({
+              icon: 'success',
+              title: 'Done!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+    },
+
     renderTable() {
       $(function () {
         var table = $('.invoiced-jobs').DataTable({
