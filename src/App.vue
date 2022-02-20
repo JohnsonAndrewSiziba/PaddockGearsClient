@@ -4,7 +4,7 @@
 	Layout component is dynamically declared based on the layout for each route,
 	specified in routes list router/index.js .
  -->
-
+<!--// recompile-->
 <template>
 	<div id="app">
 		<component :is="layout">
